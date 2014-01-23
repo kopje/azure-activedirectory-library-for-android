@@ -423,7 +423,7 @@ public class AuthenticationActivity extends Activity {
         @Override
         public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
             // Developer does not have option to control this for now
-            super.onReceivedSslError(view, handler, error);
+            // Don't call super.onReceivedSslError to avoid crash in native code for webview observed in SDK 18
             displaySpinner(false);
             handler.cancel();
             Logger.e(TAG, "Received ssl error", "", ADALError.ERROR_FAILED_SSL_HANDSHAKE);
